@@ -43,7 +43,7 @@ def submitApplication(request):
 
         applicationStatus = models.application_status.objects.create(user_key=userKey,application_id='aaaaa',current_verify_status='ORIGINAL', appl_user_info_sync_status=0, version=1)
         print 'application_status create end, applicationStatus.getId=',applicationStatus.id
-        models.application_submit_info.objects.create(user_key=userKey,product_type=productType,channel_id=channelId,is_self_register=isSelfRegister, black_box_id=blackBoxId, platform=platform)
+        models.application_submit_info.objects.create(user_key=userKey,product_type=productType,channel_id=channelId,is_self_register=isSelfRegister, black_box_id=blackBoxId, platform=platform,verify_appl_status_id=applicationStatus.id)
         RedisService.releaseLock(lockKey)
     except Exception, e:
         print e
